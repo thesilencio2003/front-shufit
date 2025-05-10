@@ -1,0 +1,23 @@
+nav{
+    margin: 10px 30px 15px 30px;
+    border-top: 2px solid #012e18;
+    border-bottom: 2px solid #012e18;
+
+}
+.btn-login {
+    background: linear-gradient(to right, #4CAF50, #81C784); 
+    color: white;
+    border: none;
+    border-radius: 15px;
+    margin-top: 4px;
+    margin-left: 250px;
+    padding: 5px 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.btn-login:hover {
+    background: linear-gradient(to right, #388E3C, #66BB6A); 
+    color: white;
+}
