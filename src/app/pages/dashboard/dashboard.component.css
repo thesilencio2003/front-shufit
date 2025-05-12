@@ -1,0 +1,28 @@
+.sidebar-collapsed {
+  width: 60px !important; /* Ancho de la barra lateral comprimida */
+}
+
+.sidebar-collapsed #sidebarTitle {
+  display: none !important;
+}
+
+.sidebar-collapsed .sidebar-heading span {
+  display: none !important;
+}
+
+.sidebar-collapsed .sidebar-text {
+  display: none !important;
+}
+
+.sidebar-collapsed .nav-link {
+  padding-left: 0.75rem !important;
+  padding-right: 0.75rem !important;
+}
+
+.sidebar-collapsed .me-2 { /* Ajusta el margen del icono cuando no hay texto */
+  margin-right: 0 !important;
+}
+
+.sidebar-collapsed #toggleSidebar i::before {
+  content: "\f282"; /* Icono de chevron-right para indicar la acción de expandir */
+}

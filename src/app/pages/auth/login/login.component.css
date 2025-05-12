@@ -1,0 +1,19 @@
+.btn-outline-secondary:hover {
+    background-color: #28a745 !important; 
+    color: white !important; 
+    border-color: #28a745 !important;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-outline-color{
+    background-color: #28a745 !important; 
+    color: white !important; 
+}
+
+.btn-outline-color:hover{
+    background-color: #000000 !important; 
+    color: rgb(255, 255, 255) !important; 
+    border-color: #28a745 !important;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+

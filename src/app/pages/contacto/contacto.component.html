@@ -1,1 +1,126 @@
-<p>contacto works!</p>
+<section class="py-5 bg-light" data-aos="fade-up">
+  <div class="container">
+    <!-- Título -->
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8 text-center">
+        <h2 class="display-5 fw-bold">Contáctanos</h2>
+        <p class="lead text-muted">¿Dudas, sugerencias o quieres unirte a Shufit? Escríbenos, te responderemos pronto.</p>
+      </div>
+    </div>
+
+    <!-- Imagen + Formulario -->
+    <div class="row g-5 align-items-start">
+      <!-- Imagen -->
+      <div class="col-lg-6" data-aos="fade-right">
+        <img src="https://picsum.photos/id/1044/800/500" alt="Contacto Shufit" class="img-fluid rounded-4 shadow mb-4">
+
+        <div class="bg-white p-4 rounded shadow-sm">
+          <h5 class="fw-bold">Información de contacto</h5>
+          <p><i class="bi bi-geo-alt-fill me-2 text-primary"></i> Av. Salud 123, CDMX</p>
+          <p><i class="bi bi-envelope-fill me-2 text-primary"></i> contactoshufit.com</p>
+          <p><i class="bi bi-telephone-fill me-2 text-primary"></i> +52 55 1234 5678</p>
+          <p><i class="bi bi-clock-fill me-2 text-primary"></i> Lunes a Viernes: 6am - 10pm</p>
+        </div>
+      </div>
+
+      <!-- Formulario -->
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="card shadow-lg border-0">
+          <div class="card-body p-4">
+            <form>
+              <div class="row g-3">
+                <!-- Nombre -->
+                <div class="col-md-6">
+                  <label for="name" class="form-label">Nombre completo</label>
+                  <input type="text" class="form-control" id="name" required>
+                </div>
+
+                <!-- Correo -->
+                <div class="col-md-6">
+                  <label for="email" class="form-label">Correo electrónico</label>
+                  <input type="email" class="form-control" id="email" required>
+                </div>
+
+                <!-- Teléfono -->
+                <div class="col-md-6">
+                  <label for="phone" class="form-label">Teléfono</label>
+                  <input type="tel" class="form-control" id="phone" required>
+                </div>
+
+                <!-- Asunto -->
+                <div class="col-md-6">
+                  <label for="subject" class="form-label">Asunto</label>
+                  <input type="text" class="form-control" id="subject">
+                </div>
+
+                <!-- ¿Eres miembro? -->
+                <div class="col-md-6">
+                  <label class="form-label">¿Eres miembro?</label><br>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="miembro" id="miembroSi" value="Sí" required>
+                    <label class="form-check-label" for="miembroSi">Sí</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="miembro" id="miembroNo" value="No" required>
+                    <label class="form-check-label" for="miembroNo">No</label>
+                  </div>
+                </div>
+
+                <!-- Motivo -->
+                <div class="col-md-6">
+                  <label for="motivo" class="form-label">Motivo del contacto</label>
+                  <select class="form-select" id="motivo" required>
+                    <option value="">Selecciona</option>
+                    <option>Planes</option>
+                    <option>App</option>
+                    <option>Sugerencias</option>
+                    <option>Otro</option>
+                  </select>
+                </div>
+
+                <!-- Servicio -->
+                <div class="col-md-6">
+                  <label for="servicio" class="form-label">Clase o servicio</label>
+                  <input type="text" class="form-control" id="servicio">
+                </div>
+
+                <!-- Horario -->
+                <div class="col-md-6">
+                  <label for="horario" class="form-label">Horario de contacto</label>
+                  <input type="text" class="form-control" id="horario">
+                </div>
+
+                <!-- Mensaje (ocupa el ancho completo) -->
+                <div class="col-12">
+                  <label for="mensaje" class="form-label">Mensaje</label>
+                  <textarea class="form-control" id="mensaje" rows="4" required></textarea>
+                </div>
+
+                <!-- Política -->
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="privacidad" required>
+                    <label class="form-check-label" for="privacidad">
+                      Acepto la <a href="#">política de privacidad</a>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Captcha -->
+                <div class="col-12">
+                  <label for="captcha" class="form-label">Captcha</label>
+                  <input type="text" class="form-control" id="captcha" placeholder="¿Cuánto es 3 + 4?" required>
+                </div>
+
+                <!-- Botón -->
+                <div class="col-12">
+                  <button type="submit" class="btn btn-success w-100 btn-lg">Contactar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

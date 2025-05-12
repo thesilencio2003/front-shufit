@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sobrenosotros',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './sobrenosotros.component.html',
   styleUrl: './sobrenosotros.component.css'
 })
-export class SobrenosotrosComponent {
-
+export default class SobrenosotrosComponent {
+  
 }

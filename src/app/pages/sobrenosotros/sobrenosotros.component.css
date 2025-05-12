@@ -1,0 +1,18 @@
+.header-somos {
+    margin-top: 60px;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url('https://picsum.photos/id/1040/1920/1080') center/cover no-repeat;
+    color: white;
+}
+
+.header-somos h1,
+.header-somos p {
+    color: white;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}

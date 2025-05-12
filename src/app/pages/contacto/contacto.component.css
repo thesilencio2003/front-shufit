@@ -1,0 +1,28 @@
+section{
+    margin-top: 60px;
+}
+
+.card {
+  border-radius: 16px;
+}
+
+.form-control,
+.form-select {
+  border-radius: 10px;
+  padding: 12px 15px;
+}
+
+.btn-success {
+  border-radius: 30px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+img {
+  border-radius: 16px;
+  object-fit: cover;
+}
