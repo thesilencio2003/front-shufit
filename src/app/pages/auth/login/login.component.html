@@ -17,7 +17,7 @@
                 <a href="#" class="text-secondary " style="text-decoration: none;">¿Olvidaste tu contraseña?</a>
             </div>
             <button class="btn btn-dark mb-2 w-100">Login</button>
-            <button class="btn btn-outline-secondary w-100 mb-3">
+            <button  (click)="loginWithGoogle()" class="btn btn-outline-secondary w-100 mb-3">
                 <i class="bi bi-google"></i>
                 Login with Google 
             </button>
@@ -26,7 +26,8 @@
                 <span class="mx-2 text-secondary">O</span>
                 <hr class="w-50">
             </div>
-            <a href="#" class="btn btn-outline-color w-100">Registrar</a>
+            <a  class="btn btn-outline-color w-100" href="javascript:void(0)" [routerLink]="['register']"
+                        routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Registrar</a>
         </div>
     </div>
 </div>

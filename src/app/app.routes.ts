@@ -15,32 +15,37 @@ export const routes: Routes = [
       {
         path: 'login',
         title: 'Login',
-        loadComponent: () => import('./pages/auth/login/login.component').then(m => m.default)
+        loadComponent: () => import('./pages/auth/login/login.component')
+      },
+      {
+        path: 'login/register',
+        title: 'Register',
+        loadComponent: () => import('./pages/auth/register/register.component')
       },
       {
         path: 'sobrenosotros',
         title: 'Sobre Nosotros',
-        loadComponent: () => import('./pages/sobrenosotros/sobrenosotros.component').then(m => m.default)
+        loadComponent: () => import('./pages/sobrenosotros/sobrenosotros.component')
       },
       {
         path: 'contacto',
         title: 'Contacto',
-        loadComponent: () => import('./pages/contacto/contacto.component').then(m => m.default)
+        loadComponent: () => import('./pages/contacto/contacto.component')
       },
       {
         path: 'terminos',
         title: 'Términos y Condiciones',
-        loadComponent: () => import('./pages/terminos/terminos.component').then(m => m.default)
+        loadComponent: () => import('./pages/terminos/terminos.component')
       },
       {
         path: 'politicas',
         title: 'Políticas',
-        loadComponent: () => import('./pages/politicas/politicas.component').then(m => m.default)
+        loadComponent: () => import('./pages/politicas/politicas.component')
       },
       {
         path: 'tienda',
         title: 'Tienda',
-        loadComponent: () => import('./pages/tienda/tienda.component').then(m => m.default)
+        loadComponent: () => import('./pages/tienda/tienda.component')
       }
     ]
    },
