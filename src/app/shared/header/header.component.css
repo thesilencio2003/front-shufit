@@ -1,11 +1,10 @@
 nav{
-    margin: 10px 30px 15px 30px;
     border-top: 2px solid #012e18;
     border-bottom: 2px solid #012e18;
-
+    background-color:#1A5319 ;
 }
 .btn-login {
-    background: linear-gradient(to right, #4CAF50, #81C784); 
+    background: linear-gradient(to right, #418b43, #81C784); 
     color: white;
     border: none;
     border-radius: 15px;
@@ -18,6 +17,21 @@ nav{
 }
 
 .btn-login:hover {
-    background: linear-gradient(to right, #388E3C, #66BB6A); 
+    background: linear-gradient(to right, #4CAF50, #81C784); 
     color: white;
+}
+
+.btn-quienes:hover{
+    background: linear-gradient(to right, #418b43, #81C784);
+    color: white;
+    border-radius: 12px;
+}
+
+li{
+    color: #ffffff;
+  
+}
+
+a{
+    color: #FFFFFF;
 }

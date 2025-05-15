@@ -46,7 +46,12 @@ export const routes: Routes = [
         path: 'tienda',
         title: 'Tienda',
         loadComponent: () => import('./pages/tienda/tienda.component')
-      }
+      },
+      {
+        path: 'recuperar',
+        title: 'Recuperar',
+        loadComponent: () => import('./pages/auth/recuperar/recuperar.component')
+        },
     ]
    },
   {

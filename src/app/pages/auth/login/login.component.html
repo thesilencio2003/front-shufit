@@ -1,4 +1,4 @@
-<div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
+<div class="container-fluid vh-100 mt-3 d-flex justify-content-center align-items-center">
     <div class="row rounded shadow bg-white overflow-hidden" style="max-width: 1000px; width: 80%;">
         <div class="col-md-6 p-0 d-none d-md-block">
             <img src="./assets/img/fondo.png" alt="Imagen de Login" class="img-fluid h-100 object-fit-cover">
@@ -14,7 +14,8 @@
                 <input type="password" class="form-control" id="password" placeholder="********">
             </div>
             <div class="mb-3">
-                <a href="#" class="text-secondary " style="text-decoration: none;">¿Olvidaste tu contraseña?</a>
+                <a  href="javascript:void(0)" [routerLink]="['/recuperar']"
+                        routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"class="text-secondary " style="text-decoration: none;">¿Olvidaste tu contraseña?</a>
             </div>
             <button class="btn btn-dark mb-2 w-100">Login</button>
             <button  (click)="loginWithGoogle()" class="btn btn-outline-secondary w-100 mb-3">
