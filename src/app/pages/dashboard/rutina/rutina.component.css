@@ -1,0 +1,37 @@
+ 
+  .rutina-card {
+    border: none;
+    color: white;
+  }
+
+  .rutina-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .rutina-body {
+    padding-bottom: 0 !important;
+  }
+
+  .ejercicio {
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
+  }
+
+  .ejercicio:last-child {
+    border-bottom: none;
+  }
+
+  .rutina-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .bg-gradient-primary {
+    background: linear-gradient(to right, #007bff, #6610f2);
+  }
+
+  .bg-gradient-success {
+    background: linear-gradient(to right, #28a745, #20c997);
+  }
+
+  .bg-gradient-warning {
+    background: linear-gradient(to right, #ffc107, #fd7e14);
+  }

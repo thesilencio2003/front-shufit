@@ -5,30 +5,40 @@
         </div>
         <div class="col-md-6 p-4 d-flex flex-column justify-content-center">
             <h1 class="mb-4">Login <span class="text-secondary fw-light">◇</span></h1>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="max@yahoo.com">
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="********">
-            </div>
-            <div class="mb-3">
-                <a  href="javascript:void(0)" [routerLink]="['/recuperar']"
-                        routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"class="text-secondary " style="text-decoration: none;">¿Olvidaste tu contraseña?</a>
-            </div>
-            <button class="btn btn-dark mb-2 w-100">Login</button>
-            <button  (click)="loginWithGoogle()" class="btn btn-outline-secondary w-100 mb-3">
+            <form *ngIf="!isBlocked" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="usernameOrEmail" class="form-label">Usuario</label>
+                    <input type="text" class="form-control" id="usernameOrEmail" formControlName="usernameOrEmail" placeholder="Tu nombre de usuario o correo">
+                    <div *ngIf="loginForm.controls['usernameOrEmail']?.invalid && (loginForm.controls['usernameOrEmail']?.dirty || loginForm.controls['usernameOrEmail']?.touched)" class="error-message text-danger">
+                        Usuario es requerido.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="password" formControlName="password" placeholder="********">
+                    <div *ngIf="loginForm.controls['password']?.invalid && (loginForm.controls['password']?.dirty || loginForm.controls['password']?.touched)" class="error-message text-danger">
+                        Contraseña es requerida.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <a href="javascript:void(0)" [routerLink]="['/recuperar']"
+                       routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"class="text-secondary " style="text-decoration: none;">¿Olvidaste tu contraseña?</a>
+                </div>
+                <button type="submit" class="btn btn-dark mb-2 w-100" [disabled]="loginForm.invalid || isBlocked">Login</button>
+            </form>
+             <div *ngIf="errorMessage && !isBlocked"></div>
+            <button (click)="loginWithGoogle()" class="btn btn-outline-secondary w-100 mb-3">
                 <i class="bi bi-google"></i>
-                Login with Google 
+                Login with Google
             </button>
             <div class="d-flex justify-content-center align-items-center mb-3">
                 <hr class="w-50">
                 <span class="mx-2 text-secondary">O</span>
                 <hr class="w-50">
             </div>
-            <a  class="btn btn-outline-color w-100" href="javascript:void(0)" [routerLink]="['register']"
-                        routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Registrar</a>
+            <a class="btn btn-outline-secondary w-100" href="javascript:void(0)" [routerLink]="['./register']"
+               routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" style="text-decoration: none;">Registrar</a>
+            <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
         </div>
     </div>
 </div>

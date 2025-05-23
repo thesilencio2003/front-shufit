@@ -1,0 +1,91 @@
+  <div class="container-fluid"></div>
+  <aside>
+    <app-dashboard></app-dashboard>
+  </aside>
+
+    <div class="card shadow-sm my-2" style="font-size: 0.9rem;">
+      <div class="card-header bg-success text-white py-2">
+        <h5 class="card-title mb-0"><i class="bi bi-cash-coin me-2"></i> Realizar Pago</h5>
+      </div>
+      <div class="card-body p-3">
+        <h6 class="card-subtitle mb-2 text-muted">Membresía</h6>
+        <ul class="list-group list-group-flush mb-2">
+          <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+            <strong>Plan:</strong> <span>Membresía Mensual Premium</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+            <strong>Vence:</strong> <span>2025-06-15</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+            <strong>Costo:</strong> <span>$50.000 COP</span>
+          </li>
+        </ul>
+
+        <h6 class="card-subtitle mb-2 text-muted">Pago</h6>
+        <div class="mb-2">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="creditCard" checked>
+            <label class="form-check-label" for="creditCard"> <i class="bi bi-credit-card-fill me-2"></i> Tarjeta Crédito </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="paymentMethod" id="debitCard" value="debitCard">
+            <label class="form-check-label" for="debitCard"> <i class="bi bi-credit-card me-2"></i> Tarjeta Débito </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="paymentMethod" id="pse" value="pse">
+            <label class="form-check-label" for="pse"> <i class="bi bi-bank me-2"></i> PSE </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="paymentMethod" id="cash" value="cash" disabled>
+            <label class="form-check-label" for="cash"> <i class="bi bi-cash me-2"></i> Efectivo (No disponible) </label>
+          </div>
+        </div>
+
+        <div id="creditCardDetails">
+          <h6 class="mb-2 text-muted">Tarjeta de Crédito</h6>
+          <div class="mb-2">
+            <label for="cardNumber" class="form-label"><i class="bi bi-credit-card-2-front-fill me-2"></i> Número:</label>
+            <input type="text" class="form-control form-control-sm" id="cardNumber" name="cardNumber" placeholder="**** **** **** ****" required>
+          </div>
+          <div class="row mb-2">
+            <div class="col-md-6">
+              <label for="expiryDate" class="form-label"><i class="bi bi-calendar-event-fill me-2"></i> Expiración:</label>
+              <input type="month" class="form-control form-control-sm" id="expiryDate" name="expiryDate" required>
+            </div>
+            <div class="col-md-6">
+              <label for="cvv" class="form-label"><i class="bi bi-shield-lock-fill me-2"></i> CVV:</label>
+              <input type="text" class="form-control form-control-sm" id="cvv" name="cvv" placeholder="123" required>
+            </div>
+          </div>
+          <div class="mb-2 form-check">
+            <input type="checkbox" class="form-check-input" id="saveCard">
+            <label class="form-check-label" for="saveCard">Guardar tarjeta</label>
+          </div>
+        </div>
+
+        <div id="debitCardDetails" style="display: none;">
+          <h6 class="mb-2 text-muted">Tarjeta Débito</h6>
+          <p class="mb-0">Sigue las instrucciones en la pasarela.</p>
+        </div>
+
+        <div id="pseDetails" style="display: none;">
+          <h6 class="mb-2 text-muted">Seleccionar Banco (PSE)</h6>
+          <select class="form-select form-select-sm mb-2" id="bank" name="bank" required>
+            <option value="">Selecciona tu banco</option>
+            <option value="bancolombia">Bancolombia</option>
+            <option value="davivienda">Davivienda</option>
+            <option value="banco_de_bogota">Banco de Bogotá</option>
+            <option value="...">...</option>
+          </select>
+          <p class="mb-0">Serás redirigido al sitio web de tu banco.</p>
+        </div>
+
+        <div class="d-grid gap-1">
+          <button type="submit" class="btn btn-success btn-sm"><i class="bi bi-lock-fill me-2"></i> Pagar</button>
+          <button type="button" class="btn btn-secondary btn-sm"><i class="bi bi-arrow-left-circle-fill me-2"></i> Volver</button>
+        </div>
+      </div>
+      <div class="card-footer text-muted text-center py-1" style="font-size: 0.8rem;">
+        Pago seguro y encriptado.
+      </div>
+    </div>

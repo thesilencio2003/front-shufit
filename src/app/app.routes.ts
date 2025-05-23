@@ -1,9 +1,11 @@
 import { Routes } from '@angular/router';
 import { PublicLayoutComponent } from './public-layout.component';
 import { PrivateLayoutComponent } from './PrivateLayoutComponent';
+import { AuthGuard } from './auth.guard';
+import { AdminLayoutComponent } from './adminlayout';
 
 export const routes: Routes = [
-   {
+  {
     path: '',
     component: PublicLayoutComponent,
     children: [
@@ -51,19 +53,68 @@ export const routes: Routes = [
         path: 'recuperar',
         title: 'Recuperar',
         loadComponent: () => import('./pages/auth/recuperar/recuperar.component')
-        },
+      },
     ]
-   },
+  },
   {
     path: '',
     component: PrivateLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'dashboard',
         title: 'Dashboard',
         loadComponent: () => import('./pages/dashboard/dashboard.component')
-      }
+      },
+      {
+        path: 'dashboard/perfil',
+        title: 'Perfil',
+        loadComponent: () => import('./pages/dashboard/perfil-usuario/perfil-usuario.component')
+      },
+      {
+        path: 'dashboard/agendar',
+        title: 'Agendar',
+        loadComponent: () => import('./pages/dashboard/agendar-usuario/agendar-usuario.component')
+      },
+      {
+        path: 'dashboard/pagos',
+        title: 'Pagos',
+        loadComponent: () => import('./pages/dashboard/pagos/pagos.component')
+      },
+      {
+        path: 'dashboard/rutinas',
+        title: 'Rutinas',
+        loadComponent: () => import('./pages/dashboard/rutina/rutina.component')
+      },
+      {
+        path: 'dashboard/alimentacion',
+        title: 'Alimentación',
+        loadComponent: () => import('./pages/dashboard/alimentacion/alimentacion.component')
+      },
+
+      {
+        path: 'dashboard/entrenadores',
+        title: 'Entrenadores',
+        loadComponent: () => import('./pages/dashboard/entrenador/entrenador.component')
+      },
     ]
-  }
+  },
+
+  {
+  path: 'admin',
+  component: AdminLayoutComponent,
+  children: [
+    {
+      path: '',
+      title: 'Dashboard Admin',
+      loadComponent: () => import('./pages/dashboard/admin/admin.component')
+    },
+    {
+      path: 'productos',
+      title: 'Productos',
+      loadComponent: () => import('./pages/dashboard/admin/productos/productos.component')
+    },
+  ]
+}
 
 ];

@@ -4,7 +4,7 @@ import HeaderComponent from './shared/header/header.component';
 import FooterComponent from './shared/footer/footer.component';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-public',
   imports: [RouterOutlet,HeaderComponent,FooterComponent],
   templateUrl: './public-layout.component.html'
 })

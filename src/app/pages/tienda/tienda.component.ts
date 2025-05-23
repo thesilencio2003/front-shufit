@@ -41,7 +41,7 @@ export default class TiendaComponent implements OnInit {
       isNew: false,
       topSeller: true,
       discount: true,
-      image: 'https://picsum.photos/id/101/400/300',
+      image: './assets/img/prod1.jpg',
     },
     {
       id: 2,
@@ -56,7 +56,7 @@ export default class TiendaComponent implements OnInit {
       isNew: true,
       topSeller: false,
       discount: false,
-      image: 'https://picsum.photos/id/102/400/300',
+      image: './assets/img/bi.png',
     },
     {
       id: 3,
@@ -195,7 +195,7 @@ export default class TiendaComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    alert(`${product.name} agregado al carrito.`);
+    alert(`${product.name} agregado al carrito. porfavor inicia sesion para continuar`);
   }
 
   getDiscountedPrice(product: Product): number {

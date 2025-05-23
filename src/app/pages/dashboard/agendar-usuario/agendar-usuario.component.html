@@ -1,0 +1,61 @@
+<div style="display: flex;">
+  <aside >
+    <app-dashboard></app-dashboard>
+  </aside>
+  <div class="container-fluid" >
+    <div class="card shadow-sm my-3" style="font-size: 0.9rem;">
+      <div class="card-header bg-primary text-white py-2" style="font-size: 1rem;">
+        <h2 class="card-title mb-0"><i class="bi bi-calendar-plus me-1"></i> Agendar Cita</h2>
+      </div>
+      <div class="card-body p-3">
+        <form id="appointmentForm">
+          <div class="mb-2">
+            <label for="trainer" class="form-label"><i class="bi bi-person-fill me-1"></i> Entrenador:</label>
+            <select class="form-select form-select-sm" id="trainer" name="trainer" required>
+              <option value="">Selecciona</option>
+              <option value="entrenador1">Entrenador #1</option>
+              <option value="entrenador2">Entrenador #2</option>
+              <option value="entrenador3">Entrenador #3</option>
+              </select>
+          </div>
+          <div class="mb-2">
+            <label for="date" class="form-label"><i class="bi bi-calendar-date me-1"></i> Fecha:</label>
+            <input type="date" class="form-control form-control-sm" id="date" name="date" required>
+          </div>
+          <div class="mb-2">
+            <label for="time" class="form-label"><i class="bi bi-clock-fill me-1"></i> Hora:</label>
+            <select class="form-select form-select-sm" id="time" name="time" required>
+              <option value="">Selecciona</option>
+              <option value="09:00">09:00</option>
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
+              <option value="14:00">14:00</option>
+              <option value="15:00">15:00</option>
+              <option value="16:00">16:00</option>
+              </select>
+          </div>
+          <div class="mb-2">
+            <label for="sessionType" class="form-label"><i class="bi bi-gear-fill me-1"></i> Sesión:</label>
+            <select class="form-select form-select-sm" id="sessionType" name="sessionType" required>
+              <option value="">Selecciona</option>
+              <option value="individual">Individual</option>
+              <option value="grupal">Grupal</option>
+              <option value="consulta">Consulta</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label for="notes" class="form-label"><i class="bi bi-sticky-fill me-1"></i> Notas:</label>
+            <textarea class="form-control form-control-sm" id="notes" name="notes" rows="2"></textarea>
+          </div>
+          <div class="d-grid gap-1">
+            <button type="submit" class="btn btn-success btn-sm"><i class="bi bi-check-circle-fill me-1"></i> Agendar</button>
+            <button type="button" class="btn btn-secondary btn-sm"><i class="bi bi-x-circle-fill me-1"></i> Cancelar</button>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer text-muted text-center py-1" style="font-size: 0.8rem;">
+        Selecciona fecha y hora.
+      </div>
+    </div>
+  </div>
+</div>

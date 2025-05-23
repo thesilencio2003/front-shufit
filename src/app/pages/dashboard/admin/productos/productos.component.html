@@ -1,0 +1,66 @@
+ <div style="display: flex;">
+ <aside >
+    <app-admin></app-admin>
+  </aside>
+ <div class="container">
+    
+
+    <div class="product-form">
+      <h2>Agregar Producto</h2>
+
+      <form>
+        <div>
+          <label for="name">Nombre</label>
+          <input id="name" placeholder="Nombre del producto" />
+        </div>
+
+        <div>
+          <label for="description">Descripción</label>
+          <input id="description" placeholder="Descripción del producto" />
+        </div>
+
+        <div>
+          <label for="price">Precio</label>
+          <input id="price" type="number" placeholder="Precio del producto" />
+        </div>
+
+        <div>
+          <label for="image">Imagen</label>
+          <input id="image" placeholder="Imagen del producto" />
+        </div>
+
+        <button type="submit">Agregar Producto</button>
+        <button type="button">Cancelar</button>
+      </form>
+    </div>
+
+    <div class="product-list">
+      <h2>Lista de Productos</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Imagen</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Producto 1</td>
+            <td>Descripción del producto 1</td>
+            <td>$10.00</td>
+            <td><img src="ruta/imagen.jpg" alt="Imagen del producto" /></td>
+            <td>
+              <button>Editar</button>
+              <button>Eliminar</button>
+            </td>
+          </tr>
+          <!-- Más filas de ejemplo aquí -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
