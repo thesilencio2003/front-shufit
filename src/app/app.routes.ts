@@ -114,6 +114,11 @@ export const routes: Routes = [
       title: 'Productos',
       loadComponent: () => import('./pages/dashboard/admin/productos/productos.component')
     },
+    {
+       path: 'clientes',
+       title: 'Clientes',
+       loadComponent: () => import('./pages/dashboard/admin/clientes/clientes.component')
+    }
   ]
 }
 
