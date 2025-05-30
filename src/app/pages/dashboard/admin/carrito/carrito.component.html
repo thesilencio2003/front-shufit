@@ -1,0 +1,74 @@
+<div class="layout">
+  <aside>
+    <app-admin></app-admin>
+  </aside>
+  <div class="container">
+    <div class="product-form card">
+      <h2>Agregar Producto al Carrito</h2>
+
+      <form (ngSubmit)="agregarAlCarrito()">
+        <div>
+          <label for="product-name">Nombre del Producto</label>
+          <input id="product-name" [(ngModel)]="nuevoItem.nombre" name="nombre" required placeholder="Ej: Camiseta deportiva" />
+        </div>
+
+        <div>
+          <label for="product-price">Precio</label>
+          <input id="product-price" type="number" [(ngModel)]="nuevoItem.precio" name="precio" min="0.01" step="0.01" required placeholder="Ej: 25.00" />
+        </div>
+
+        <div>
+          <label for="product-quantity">Cantidad</label>
+          <input id="product-quantity" type="number" [(ngModel)]="nuevoItem.cantidad" name="cantidad" min="1" required />
+        </div>
+
+        <button type="submit">Añadir al Carrito</button>
+        <button type="button" (click)="resetForm()">Ver Catálogo</button>
+      </form>
+    </div>
+
+    <div class="product-list" *ngIf="carrito.length > 0">
+      <h2>Carrito de Compras</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Total</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of carrito; let i = index">
+            <td>{{ item.nombre }}</td>
+            <td>{{ item.cantidad }}</td>
+            <td>${{ item.precio.toFixed(2) }}</td>
+            <td>${{ (item.precio * item.cantidad).toFixed(2) }}</td>
+            <td>
+              <button (click)="aumentarCantidad(i)">Aumentar</button>
+              <button (click)="disminuirCantidad(i)">Disminuir</button>
+              <button (click)="eliminarProducto(i)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3" style="text-align: right;"><strong>Total del Carrito:</strong></td>
+            <td><strong>${{ getTotal().toFixed(2) }}</strong></td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+      <div style="margin-top: 20px; text-align: right;">
+        <button>Continuar Comprando</button>
+        <button style="background-color: #4CAF50; color: white;">Proceder al Pago</button>
+      </div>
+    </div>
+
+    <div *ngIf="carrito.length === 0" style="text-align: center; margin-top: 40px;">
+      <p>Tu carrito está vacío.</p>
+    </div>
+  </div>
+</div>

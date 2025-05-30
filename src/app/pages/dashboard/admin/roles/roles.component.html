@@ -1,0 +1,84 @@
+<div class="layout">
+  <aside>
+    <app-admin></app-admin>
+  </aside>
+
+  <div class="container">
+    <div class="product-form card">
+      <h2>{{ editando ? 'Editar Asignación' : 'Asignar Rol y Permisos' }}</h2>
+
+      <form (ngSubmit)="guardarAsignacion()">
+        <div>
+          <label for="user-select">Seleccionar Usuario</label>
+          <select id="user-select" [(ngModel)]="nuevo.usuario" name="usuario" required>
+            <option value="">-- Seleccione un usuario --</option>
+            <option *ngFor="let user of usuariosDisponibles" [value]="user">{{ user }}</option>
+          </select>
+
+        </div>
+
+        <div>
+          <label for="role-select">Seleccionar Rol</label>
+          <select id="role-select" [(ngModel)]="nuevo.rol" name="rol" required>
+            <option value="">-- Seleccione un rol --</option>
+            <option value="admin">Administrador</option>
+            <option value="editor">Editor</option>
+            <option value="viewer">Lector</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Permisos</label>
+          <div>
+            <input type="checkbox" id="perm-create" [checked]="tienePermiso('create')"
+              (change)="togglePermiso('create')" />
+            <label for="perm-create">Crear</label>
+          </div>
+          <div>
+            <input type="checkbox" id="perm-read" [checked]="tienePermiso('read')" (change)="togglePermiso('read')" />
+            <label for="perm-read">Leer</label>
+          </div>
+          <div>
+            <input type="checkbox" id="perm-update" [checked]="tienePermiso('update')"
+              (change)="togglePermiso('update')" />
+            <label for="perm-update">Actualizar</label>
+          </div>
+          <div>
+            <input type="checkbox" id="perm-delete" [checked]="tienePermiso('delete')"
+              (change)="togglePermiso('delete')" />
+            <label for="perm-delete">Eliminar</label>
+          </div>
+        </div>
+
+        <button type="submit">{{ editando ? 'Guardar Cambios' : 'Asignar Rol y Permisos' }}</button>
+        <button type="button" (click)="cancelar()">Cancelar</button>
+      </form>
+    </div>
+
+    <div class="product-list">
+      <h2>Roles y Permisos Asignados</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Rol Asignado</th>
+            <th>Permisos</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let asignacion of asignaciones; let i = index">
+            <td>{{ asignacion.usuario }}</td>
+            <td>{{ asignacion.rol | titlecase }}</td>
+            <td>{{ asignacion.permisos.join(', ') }}</td>
+            <td>
+              <button (click)="editarAsignacion(i)">Editar</button>
+              <button (click)="eliminarAsignacion(i)">Revocar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

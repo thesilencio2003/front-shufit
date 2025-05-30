@@ -1,0 +1,86 @@
+<div class="layout">
+  <aside>
+    <app-admin></app-admin>
+  </aside>
+  <div class="container">
+    <div class="product-form card">
+      <h2>Crear/Editar Rutina de Entrenamiento</h2>
+
+      <form (submit)="guardarRutina($event)">
+        <div>
+          <label for="routine-name">Nombre de la Rutina</label>
+          <input id="routine-name" [(ngModel)]="rutina.nombre" name="nombre"
+            placeholder="Ej: Rutina de Fuerza - Nivel Intermedio" required />
+        </div>
+
+        <div>
+          <label for="routine-goal">Objetivo Principal</label>
+          <select id="routine-goal" [(ngModel)]="rutina.objetivo" name="objetivo" required>
+            <option value="" disabled>-- Seleccione un objetivo --</option>
+            <option value="strength">Fuerza</option>
+            <option value="hypertrophy">Hipertrofia (Ganancia Muscular)</option>
+            <option value="endurance">Resistencia</option>
+            <option value="fat-loss">Pérdida de Grasa</option>
+            <option value="flexibility">Flexibilidad</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="routine-level">Nivel de Dificultad</label>
+          <select id="routine-level" [(ngModel)]="rutina.nivel" name="nivel" required>
+            <option value="beginner">Principiante</option>
+            <option value="intermediate">Intermedio</option>
+            <option value="advanced">Avanzado</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="routine-days">Días a la Semana</label>
+          <input id="routine-days" type="number" min="1" max="7" [(ngModel)]="rutina.dias" name="dias" required />
+        </div>
+
+        <div>
+          <label for="routine-description">Descripción/Notas Adicionales</label>
+          <textarea id="routine-description" rows="4" [(ngModel)]="rutina.descripcion" name="descripcion"
+            placeholder="Breve descripción o puntos clave de la rutina."></textarea>
+        </div>
+
+        <button type="submit">{{ rutinaEditarIndex !== null ? 'Actualizar Rutina' : 'Guardar Rutina' }}</button>
+        <button type="button" (click)="cancelar()">Cancelar</button>
+      </form>
+    </div>
+
+    <div class="product-list">
+      <h2>Listado de Rutinas</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Objetivo</th>
+            <th>Nivel</th>
+            <th>Días/Semana</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of rutinas; let i = index">
+            <td>{{ r.nombre }}</td>
+            <td>{{ objetivoTexto(r.objetivo) }}</td>
+            <td>{{ nivelTexto(r.nivel) }}</td>
+            <td>{{ r.dias }}</td>
+            <td>
+              <button (click)="verDetalles(r)">Ver Detalles</button>
+              <button (click)="asignarRutina(r)">Asignar</button>
+              <button (click)="editarRutina(i)">Editar</button>
+              <button (click)="eliminarRutina(i)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top: 20px; text-align: right;">
+        <button (click)="exportarRutinas()">Exportar Rutinas</button>
+      </div>
+    </div>
+  </div>
+</div>

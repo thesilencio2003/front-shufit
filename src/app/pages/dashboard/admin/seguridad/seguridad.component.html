@@ -1,0 +1,156 @@
+<div class="layout">
+  <aside>
+    <app-admin></app-admin>
+  </aside>
+
+  <div class="container">
+    <div class="product-form card">
+      <h2>Configuración de Seguridad</h2>
+
+      <form #securityForm="ngForm" (ngSubmit)="cambiarContrasena(securityForm)" novalidate>
+        <h3>Cambio de Contraseña</h3>
+        <div>
+          <label for="current-password">Contraseña Actual</label>
+          <input
+            id="current-password"
+            name="currentPassword"
+            type="password"
+            placeholder="Ingresa tu contraseña actual"
+            [(ngModel)]="cambioContrasena.currentPassword"
+            required
+            #currentPassword="ngModel"
+          />
+          <div *ngIf="currentPassword.invalid && currentPassword.touched" class="error">
+            La contraseña actual es obligatoria.
+          </div>
+        </div>
+
+        <div>
+          <label for="new-password">Nueva Contraseña</label>
+          <input
+            id="new-password"
+            name="newPassword"
+            type="password"
+            placeholder="Mínimo 8 caracteres, mayúsculas, números, símbolos"
+            [(ngModel)]="cambioContrasena.newPassword"
+            required
+            #newPassword="ngModel"
+          />
+          <div *ngIf="newPassword.invalid && newPassword.touched" class="error">
+            La nueva contraseña es obligatoria.
+          </div>
+        </div>
+
+        <div>
+          <label for="confirm-password">Confirmar Nueva Contraseña</label>
+          <input
+            id="confirm-password"
+            name="confirmPassword"
+            type="password"
+            placeholder="Repite tu nueva contraseña"
+            [(ngModel)]="cambioContrasena.confirmPassword"
+            required
+            #confirmPassword="ngModel"
+          />
+          <div *ngIf="confirmPassword.invalid && confirmPassword.touched" class="error">
+            La confirmación es obligatoria.
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="securityForm.invalid">Cambiar Contraseña</button>
+      </form>
+
+      <hr />
+
+      <h3>Autenticación de Dos Factores (2FA)</h3>
+      <div>
+        <input
+          type="checkbox"
+          id="enable-2fa"
+          [checked]="twoFAEnabled"
+          (change)="toggle2FA()"
+        />
+        <label for="enable-2fa">Habilitar 2FA</label>
+        <p>La autenticación de dos factores añade una capa extra de seguridad a tu cuenta.</p>
+      </div>
+      <button type="button" (click)="configurar2FA()">Configurar 2FA</button>
+
+      <hr />
+
+      <form #alertForm="ngForm" (ngSubmit)="guardarAlertas(alertForm)" novalidate>
+        <h3>Alertas de Seguridad</h3>
+
+        <div>
+          <input
+            type="checkbox"
+            id="alert-login-attempts"
+            name="alertLoginAttempts"
+            [(ngModel)]="alertSettings.alertLoginAttempts"
+          />
+          <label for="alert-login-attempts">Notificar intentos de inicio de sesión fallidos</label>
+        </div>
+
+        <div>
+          <input
+            type="checkbox"
+            id="alert-new-device"
+            name="alertNewDevice"
+            [(ngModel)]="alertSettings.alertNewDevice"
+          />
+          <label for="alert-new-device">Notificar inicios de sesión desde dispositivos nuevos</label>
+        </div>
+
+        <div>
+          <label for="alert-email">Correo para Notificaciones de Seguridad</label>
+          <input
+            id="alert-email"
+            name="alertEmail"
+            type="email"
+            placeholder="ejemplo@dominio.com"
+            [(ngModel)]="alertSettings.alertEmail"
+            required
+            email
+            #alertEmail="ngModel"
+          />
+          <div *ngIf="alertEmail.invalid && alertEmail.touched" class="error">
+            Ingresa un correo válido.
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="alertForm.invalid">Guardar Ajustes de Alerta</button>
+      </form>
+    </div>
+
+    <div class="product-list">
+      <h2>Registro de Actividad de Seguridad</h2>
+
+      <p>Monitorea los eventos importantes relacionados con la seguridad de tu cuenta.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha y Hora</th>
+            <th>Tipo de Evento</th>
+            <th>Usuario</th>
+            <th>Dirección IP</th>
+            <th>Resultado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let log of securityLogs">
+            <td>{{ log.fechaHora }}</td>
+            <td>{{ log.tipoEvento }}</td>
+            <td>{{ log.usuario }}</td>
+            <td>{{ log.ip }}</td>
+            <td [style.color]="log.color">{{ log.resultado }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top: 20px; text-align: right;">
+        <button (click)="exportarRegistro()">Exportar Registro</button>
+        <button (click)="verTodosRegistros()">Ver Todos los Registros</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,6 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
+interface Usuario {
+  nombre: string;
+  correo: string;
+  contrasena: string; // In a real app, never send plain passwords directly
+  rol: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })

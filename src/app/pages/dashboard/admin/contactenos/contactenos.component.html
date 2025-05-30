@@ -1,0 +1,120 @@
+<div class="layout">
+  <aside>
+    <app-admin></app-admin>
+  </aside>
+
+  <div class="container">
+    <div class="product-form card">
+      <h2>Contáctenos</h2>
+
+      <p>¡Nos encantaría saber de ti! Completa el siguiente formulario o utiliza nuestros datos de contacto para comunicarte con nosotros.</p>
+
+      <form #contactForm="ngForm" (ngSubmit)="enviarMensaje(contactForm)" novalidate>
+        <div>
+          <label for="contact-name">Tu Nombre</label>
+          <input
+            id="contact-name"
+            name="nombre"
+            type="text"
+            placeholder="Ej: Ana María Giraldo"
+            [(ngModel)]="formData.nombre"
+            required
+            #nombre="ngModel"
+          />
+          <div *ngIf="nombre.invalid && nombre.touched" class="error">
+            El nombre es obligatorio.
+          </div>
+        </div>
+
+        <div>
+          <label for="contact-email">Tu Correo Electrónico</label>
+          <input
+            id="contact-email"
+            name="email"
+            type="email"
+            placeholder="Ej: tu.correo@ejemplo.com"
+            [(ngModel)]="formData.email"
+            required
+            email
+            #email="ngModel"
+          />
+          <div *ngIf="email.invalid && email.touched" class="error">
+            Ingresa un correo válido.
+          </div>
+        </div>
+
+        <div>
+          <label for="contact-subject">Asunto</label>
+          <input
+            id="contact-subject"
+            name="asunto"
+            type="text"
+            placeholder="Ej: Consulta sobre membresías"
+            [(ngModel)]="formData.asunto"
+            required
+            #asunto="ngModel"
+          />
+          <div *ngIf="asunto.invalid && asunto.touched" class="error">
+            El asunto es obligatorio.
+          </div>
+        </div>
+
+        <div>
+          <label for="contact-message">Tu Mensaje</label>
+          <textarea
+            id="contact-message"
+            name="mensaje"
+            rows="7"
+            placeholder="Escribe tu mensaje aquí..."
+            [(ngModel)]="formData.mensaje"
+            required
+            #mensaje="ngModel"
+          ></textarea>
+          <div *ngIf="mensaje.invalid && mensaje.touched" class="error">
+            El mensaje es obligatorio.
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="contactForm.invalid">Enviar Mensaje</button>
+        <button type="button" (click)="limpiarFormulario(contactForm)">Limpiar Formulario</button>
+      </form>
+    </div>
+
+    <div class="product-list">
+      <h2>Información de Contacto</h2>
+
+      <p>También puedes encontrarnos a través de los siguientes medios:</p>
+
+      <div>
+        <h4>Dirección:</h4>
+        <p>Calle 10 # 5-20, Cali, Valle del Cauca, Colombia</p>
+      </div>
+
+      <div>
+        <h4>Teléfono:</h4>
+        <p>+57 310 123 4567</p>
+      </div>
+
+      <div>
+        <h4>Correo Electrónico:</h4>
+        <p>infoelitefitness.com</p>
+      </div>
+
+      <div>
+        <h4>Horario de Atención:</h4>
+        <p>Lunes a Viernes: 6:00 AM - 10:00 PM</p>
+        <p>Sábados: 8:00 AM - 6:00 PM</p>
+        <p>Domingos y Festivos: Cerrado</p>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <h3>Síguenos en Redes Sociales:</h3>
+        <p>
+          <a href="#" target="_blank" rel="noopener">Facebook</a> |
+          <a href="#" target="_blank" rel="noopener">Instagram</a> |
+          <a href="#" target="_blank" rel="noopener">Twitter</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

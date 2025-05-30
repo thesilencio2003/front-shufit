@@ -1,0 +1,93 @@
+<div class="layout">
+  <aside>
+    <app-admin></app-admin>
+  </aside>
+  <div class="container">
+    <div class="product-form card">
+      <h2>Registrar/Actualizar Equipo</h2>
+
+      <form (submit)="guardarEquipo($event)">
+        <div>
+          <label for="equipment-name">Nombre del Equipo</label>
+          <input id="equipment-name" [(ngModel)]="equipo.nombre" name="nombre" placeholder="Ej: Cinta de Correr ProFX" required />
+        </div>
+
+        <div>
+          <label for="equipment-id">Número de Serie/ID</label>
+          <input id="equipment-id" [(ngModel)]="equipo.id" name="id" placeholder="Ej: SN-CINTA-001A" required />
+        </div>
+
+        <div>
+          <label for="equipment-type">Tipo de Equipo</label>
+          <select id="equipment-type" [(ngModel)]="equipo.tipo" name="tipo" required>
+            <option value="" disabled>-- Seleccione un tipo --</option>
+            <option value="cardio">Cardio</option>
+            <option value="strength">Fuerza</option>
+            <option value="accessories">Accesorios</option>
+            <option value="recovery">Recuperación</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="equipment-status">Estado</label>
+          <select id="equipment-status" [(ngModel)]="equipo.estado" name="estado" required>
+            <option value="available">Disponible</option>
+            <option value="in-use">En Uso</option>
+            <option value="maintenance">En Mantenimiento</option>
+            <option value="retired">Fuera de Servicio</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="last-maintenance">Último Mantenimiento</label>
+          <input id="last-maintenance" type="date" [(ngModel)]="equipo.ultimoMantenimiento" name="ultimoMantenimiento" />
+        </div>
+
+        <div>
+          <label for="next-maintenance">Próximo Mantenimiento</label>
+          <input id="next-maintenance" type="date" [(ngModel)]="equipo.proximoMantenimiento" name="proximoMantenimiento" />
+        </div>
+
+        <button type="submit">Guardar Equipo</button>
+        <button type="button" (click)="cancelar()">Cancelar</button>
+      </form>
+    </div>
+
+    <div class="product-list">
+      <h2>Inventario y Estado del Equipo</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID Equipo</th>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Último Mantenimiento</th>
+            <th>Próximo Mantenimiento</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let eq of equipos">
+            <td>{{ eq.id }}</td>
+            <td>{{ eq.nombre }}</td>
+            <td>{{ tipoTexto(eq.tipo) }}</td>
+            <td [style.color]="colorEstado(eq.estado)">{{ estadoTexto(eq.estado) }}</td>
+            <td>{{ eq.ultimoMantenimiento || '-' }}</td>
+            <td>{{ eq.proximoMantenimiento || '-' }}</td>
+            <td>
+              <button (click)="verDetalles(eq)">Ver Detalles</button>
+              <button (click)="registrarMantenimiento(eq)">Mantenimiento</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top: 20px; text-align: right;">
+        <button (click)="programarMantenimiento()">Programar Nuevo Mantenimiento</button>
+        <button (click)="verHistorial()">Ver Historial de Mantenimiento</button>
+      </div>
+    </div>
+  </div>
+</div>

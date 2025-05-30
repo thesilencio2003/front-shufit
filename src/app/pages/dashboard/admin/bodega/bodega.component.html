@@ -1,0 +1,83 @@
+<div class="layout">
+  <aside>
+    <app-admin></app-admin>
+  </aside>
+  <div class="container">
+    <div class="product-form card">
+      <h2>{{ editIndex === null ? 'Registrar Producto en Bodega' : 'Editar Producto en Bodega' }}</h2>
+
+      <form (ngSubmit)="guardarProducto()">
+        <div>
+          <label for="product-name">Nombre del Producto</label>
+          <input id="product-name" [(ngModel)]="nuevoProducto.nombre" name="nombre" placeholder="Ej: Mancuernas de 10kg" required />
+        </div>
+
+        <div>
+          <label for="product-code">Código de Producto</label>
+          <input id="product-code" [(ngModel)]="nuevoProducto.codigo" name="codigo" placeholder="Ej: MANC-10KG-001" required />
+        </div>
+
+        <div>
+          <label for="product-category">Categoría</label>
+          <select id="product-category" [(ngModel)]="nuevoProducto.categoria" name="categoria" required>
+            <option value="">-- Seleccione una categoría --</option>
+            <option value="equipment">Equipo de Gimnasio</option>
+            <option value="supplements">Suplementos</option>
+            <option value="apparel">Ropa Deportiva</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="product-stock">Cantidad en Stock</label>
+          <input id="product-stock" type="number" [(ngModel)]="nuevoProducto.stock" name="stock" min="0" required />
+        </div>
+
+        <div>
+          <label for="product-location">Ubicación en Bodega</label>
+          <input id="product-location" [(ngModel)]="nuevoProducto.ubicacion" name="ubicacion" placeholder="Ej: Pasillo A, Estante 3, Nivel 2" />
+        </div>
+
+        <button type="submit">{{ editIndex === null ? 'Guardar Producto' : 'Actualizar Producto' }}</button>
+        <button type="button" (click)="resetForm()">Cancelar</button>
+      </form>
+    </div>
+
+    <div class="product-list" *ngIf="productos.length > 0">
+      <h2>Inventario de Bodega</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nombre del Producto</th>
+            <th>Categoría</th>
+            <th>Stock Actual</th>
+            <th>Ubicación</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let producto of productos; let i = index">
+            <td>{{ producto.codigo }}</td>
+            <td>{{ producto.nombre }}</td>
+            <td>
+              {{ producto.categoria === 'equipment' ? 'Equipo de Gimnasio' :
+                 producto.categoria === 'supplements' ? 'Suplementos' :
+                 producto.categoria === 'apparel' ? 'Ropa Deportiva' : '' }}
+            </td>
+            <td>{{ producto.stock }}</td>
+            <td>{{ producto.ubicacion }}</td>
+            <td>
+              <button (click)="editarProducto(i)">Editar</button>
+              <button (click)="eliminarProducto(i)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="productos.length === 0" style="text-align: center; margin-top: 40px;">
+      <p>No hay productos registrados en la bodega.</p>
+    </div>
+  </div>
+</div>

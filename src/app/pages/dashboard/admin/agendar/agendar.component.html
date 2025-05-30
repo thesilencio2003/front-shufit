@@ -1,0 +1,101 @@
+<div class="layout">
+  <aside>
+    <app-admin></app-admin>
+  </aside>
+  <div class="container">
+    <div class="product-form card">
+      <h2>Agendar Nueva Cita</h2>
+
+      <form (submit)="guardarCita($event)">
+        <div>
+          <label for="client-name">Cliente</label>
+          <input id="client-name" placeholder="Nombre del cliente" list="client-list" 
+                 [(ngModel)]="citaForm.cliente" name="cliente" required />
+          <datalist id="client-list">
+            <option value="Juan Pérez"></option>
+            <option value="María García"></option>
+            <option value="Carlos López"></option>
+          </datalist>
+        </div>
+
+        <div>
+          <label for="trainer-name">Entrenador</label>
+          <input id="trainer-name" placeholder="Nombre del entrenador" list="trainer-list"
+                 [(ngModel)]="citaForm.entrenador" name="entrenador" required />
+          <datalist id="trainer-list">
+            <option value="Sofía Rodríguez"></option>
+            <option value="Pedro Gámez"></option>
+            <option value="Ana Fernández"></option>
+          </datalist>
+        </div>
+
+        <div>
+          <label for="appointment-date">Fecha</label>
+          <input id="appointment-date" type="date" 
+                 [(ngModel)]="citaForm.fecha" name="fecha" required />
+        </div>
+
+        <div>
+          <label for="appointment-time">Hora</label>
+          <input id="appointment-time" type="time" 
+                 [(ngModel)]="citaForm.hora" name="hora" required />
+        </div>
+
+        <div>
+          <label for="appointment-type">Tipo de Cita</label>
+          <select id="appointment-type" [(ngModel)]="citaForm.tipo" name="tipo" required>
+            <option value="">-- Seleccione el tipo --</option>
+            <option value="personal-training">Entrenamiento Personal</option>
+            <option value="consultation">Consulta de Asesoría</option>
+            <option value="nutrition">Asesoría Nutricional</option>
+            <option value="evaluation">Evaluación Inicial</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="appointment-notes">Notas Adicionales</label>
+          <textarea id="appointment-notes" rows="3" placeholder="Detalles o requisitos especiales para la cita."
+                    [(ngModel)]="citaForm.notas" name="notas"></textarea>
+        </div>
+
+        <button type="submit">{{ editarIndex !== null ? 'Actualizar Cita' : 'Agendar Cita' }}</button>
+        <button type="button" (click)="cancelar()">Cancelar</button>
+      </form>
+    </div>
+
+    <div class="product-list">
+      <h2>Próximas Citas Agendadas</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Cliente</th>
+            <th>Entrenador</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Tipo de Cita</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cita of citas; let i = index">
+            <td>{{ cita.cliente }}</td>
+            <td>{{ cita.entrenador }}</td>
+            <td>{{ cita.fecha }}</td>
+            <td>{{ cita.hora }}</td>
+            <td>{{ textoTipo(cita.tipo) }}</td>
+            <td [style.color]="colorEstado(cita.estado)">{{ textoEstado(cita.estado) }}</td>
+            <td>
+              <button (click)="editarCita(i)">Editar</button>
+              <button (click)="cancelarCita(i)" [disabled]="cita.estado === 'cancelada'">Cancelar</button>
+              <button (click)="reagendarCita(i)" [disabled]="cita.estado === 'cancelada'">Reagendar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+     
+    </div>
+  </div>
+</div>

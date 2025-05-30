@@ -1,0 +1,81 @@
+<div class="layout">
+  <aside>
+    <app-admin></app-admin>
+  </aside>
+
+  <div class="container">
+    <!-- Formulario de generación de informe -->
+    <div class="product-form card">
+      <h2>Generar Informe</h2>
+
+      <form>
+        <div>
+          <label for="report-type">Tipo de Informe</label>
+          <select id="report-type" [(ngModel)]="reporte.tipo" name="tipo">
+            <option value="">-- Seleccione un tipo de informe --</option>
+            <option value="clients">Clientes Registrados</option>
+            <option value="trainers">Rendimiento de Entrenadores</option>
+            <option value="equipment">Estado del Equipo</option>
+            <option value="inventory">Inventario Actual</option>
+            <option value="appointments">Citas Agendadas</option>
+            <option value="sales">Ventas y Carrito</option>
+            <option value="activity-log">Registro de Actividad</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="date-range-start">Fecha de Inicio</label>
+          <input id="date-range-start" type="date" [(ngModel)]="reporte.inicio" name="inicio" />
+        </div>
+
+        <div>
+          <label for="date-range-end">Fecha de Fin</label>
+          <input id="date-range-end" type="date" [(ngModel)]="reporte.fin" name="fin" />
+        </div>
+
+        <div>
+          <label for="specific-filter">Filtro Específico (Opcional)</label>
+          <input id="specific-filter" placeholder="Ej: Nombre de cliente, ID de producto" [(ngModel)]="reporte.filtro" name="filtro" />
+        </div>
+
+        <button type="submit">Generar Informe</button>
+        <button type="button" (click)="limpiarFiltros()">Limpiar Filtros</button>
+      </form>
+    </div>
+
+    <!-- Tabla de informes generados -->
+    <div class="product-list">
+      <h2>Informes Generados Recientemente</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre del Informe</th>
+            <th>Tipo</th>
+            <th>Rango de Fechas</th>
+            <th>Generado Por</th>
+            <th>Fecha de Generación</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let informe of informesGenerados">
+            <td>{{ informe.nombre }}</td>
+            <td>{{ informe.tipo }}</td>
+            <td>{{ informe.rango }}</td>
+            <td>{{ informe.autor }}</td>
+            <td>{{ informe.fecha }}</td>
+            <td>
+              <button (click)="verInforme(informe)">Ver</button>
+              <button (click)="descargarInforme(informe)">Descargar {{ informe.formato.toUpperCase() }}</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top: 20px; text-align: right;">
+        <button (click)="verHistorial()">Ver Historial Completo de Informes</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="layout">
+  <aside>
+    <app-admin></app-admin>
+  </aside>
+
+  <div class="container">
+    <div class="card product-form">
+      <h2><i class="fas fa-user-plus"></i> {{ editando ? 'Editar Entrenador' : 'Agregar Entrenador' }}</h2>
+
+      <form (ngSubmit)="guardarEntrenador()">
+        <div class="form-group">
+          <label for="name"><i class="fas fa-signature"></i> Nombre</label>
+          <input id="name" [(ngModel)]="nuevoEntrenador.nombre" name="nombre" placeholder="Nombre del entrenador" required />
+        </div>
+
+        <div class="form-group">
+          <label for="description"><i class="fas fa-dumbbell"></i> Especialidad</label>
+          <input id="description" [(ngModel)]="nuevoEntrenador.especialidad" name="especialidad" placeholder="Especialidad del entrenador" />
+        </div>
+
+        <div class="form-group">
+          <label for="price"><i class="fas fa-phone"></i> Teléfono</label>
+          <input id="price" type="tel" [(ngModel)]="nuevoEntrenador.telefono" name="telefono" placeholder="Teléfono del entrenador" />
+        </div>
+
+        <div class="form-group">
+          <label for="image"><i class="fas fa-envelope"></i> Correo Electrónico</label>
+          <input id="image" type="email" [(ngModel)]="nuevoEntrenador.correo" name="correo" placeholder="Correo del entrenador" required />
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> {{ editando ? 'Guardar Cambios' : 'Agregar Entrenador' }}</button>
+          <button type="button" class="btn btn-secondary" (click)="cancelarEdicion()"><i class="fas fa-times-circle"></i> Cancelar</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="product-list">
+      <h2><i class="fas fa-users"></i> Lista de Entrenadores</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Especialidad</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let entrenador of entrenadores; let i = index">
+            <td>{{ entrenador.nombre }}</td>
+            <td>{{ entrenador.especialidad }}</td>
+            <td>{{ entrenador.telefono }}</td>
+            <td>{{ entrenador.correo }}</td>
+            <td class="actions-column">
+              <button class="btn btn-edit" (click)="editarEntrenador(i)"><i class="fas fa-edit"></i> Editar</button>
+              <button class="btn btn-delete" (click)="eliminarEntrenador(i)"><i class="fas fa-trash-alt"></i> Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

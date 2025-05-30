@@ -1,0 +1,194 @@
+<div class="layout">
+  <aside>
+    <app-admin></app-admin>
+  </aside>
+
+  <div class="container">
+    <div class="product-form card">
+      <h2>Configuración General</h2>
+
+      <form #generalForm="ngForm" (ngSubmit)="guardarCambios(generalForm)" novalidate>
+        <h3>Información del Gimnasio</h3>
+        <div>
+          <label for="gym-name">Nombre del Gimnasio</label>
+          <input
+            id="gym-name"
+            name="gymName"
+            placeholder="Ej: Gimnasio Elite Fitness"
+            [(ngModel)]="gymInfo.name"
+            required
+            #gymName="ngModel"
+          />
+          <div *ngIf="gymName.invalid && gymName.touched" class="error">
+            El nombre del gimnasio es obligatorio.
+          </div>
+        </div>
+
+        <div>
+          <label for="gym-address">Dirección</label>
+          <input
+            id="gym-address"
+            name="gymAddress"
+            placeholder="Ej: Calle 10 # 5-20, Cali"
+            [(ngModel)]="gymInfo.address"
+            required
+            #gymAddress="ngModel"
+          />
+          <div *ngIf="gymAddress.invalid && gymAddress.touched" class="error">
+            La dirección es obligatoria.
+          </div>
+        </div>
+
+        <div>
+          <label for="gym-phone">Teléfono de Contacto</label>
+          <input
+            id="gym-phone"
+            name="gymPhone"
+            type="tel"
+            placeholder="Ej: +57 310 123 4567"
+            [(ngModel)]="gymInfo.phone"
+            required
+            pattern="^\\+?\\d{7,15}$"
+            #gymPhone="ngModel"
+          />
+          <div *ngIf="gymPhone.invalid && gymPhone.touched" class="error">
+            Ingresa un teléfono válido.
+          </div>
+        </div>
+
+        <div>
+          <label for="gym-email">Correo Electrónico</label>
+          <input
+            id="gym-email"
+            name="gymEmail"
+            type="email"
+            placeholder="Ej: info@elitefitness.com"
+            [(ngModel)]="gymInfo.email"
+            required
+            email
+            #gymEmail="ngModel"
+          />
+          <div *ngIf="gymEmail.invalid && gymEmail.touched" class="error">
+            Ingresa un correo válido.
+          </div>
+        </div>
+
+        <hr />
+
+        <h3>Ajustes de Notificaciones</h3>
+        <div>
+          <input
+            type="checkbox"
+            id="notif-appointments"
+            name="notifAppointments"
+            [(ngModel)]="notifications.appointments"
+          />
+          <label for="notif-appointments">Recordatorios de citas</label>
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            id="notif-low-stock"
+            name="notifLowStock"
+            [(ngModel)]="notifications.lowStock"
+          />
+          <label for="notif-low-stock">Alertas de inventario bajo</label>
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            id="notif-pqrsd"
+            name="notifPqrsd"
+            [(ngModel)]="notifications.pqrsd"
+          />
+          <label for="notif-pqrsd">Nuevas solicitudes PQRSDF</label>
+        </div>
+
+        <hr />
+
+        <h3>Opciones de Seguridad</h3>
+        <div>
+          <label for="password-policy">Política de Contraseñas</label>
+          <select
+            id="password-policy"
+            name="passwordPolicy"
+            [(ngModel)]="securityOptions.passwordPolicy"
+          >
+            <option value="medium">
+              Media (Mín. 8 caracteres, 1 mayúscula, 1 número)
+            </option>
+            <option value="strong">
+              Fuerte (Mín. 12 caracteres, mayúsculas, números, símbolos)
+            </option>
+            <option value="weak">Baja (Mín. 6 caracteres)</option>
+          </select>
+        </div>
+
+        <div>
+          <input
+            type="checkbox"
+            id="two-factor-auth"
+            name="twoFactorAuth"
+            [(ngModel)]="securityOptions.twoFactorAuth"
+          />
+          <label for="two-factor-auth"
+            >Habilitar Autenticación de Dos Factores (2FA)</label
+          >
+        </div>
+
+        <hr />
+
+        <button type="submit" [disabled]="generalForm.invalid">Guardar Cambios</button>
+        <button type="button" (click)="resetToDefaults()">
+          Restablecer a Valores Predeterminados
+        </button>
+      </form>
+    </div>
+
+    <div class="product-list">
+      <h2>Configuraciones Avanzadas</h2>
+
+      <p>Aquí puedes gestionar configuraciones más específicas del sistema.</p>
+
+      <ul>
+        <li>
+          <strong>Gestión de Usuarios y Roles:</strong>
+          <p>Administra los usuarios y sus permisos de acceso al sistema.</p>
+          <button (click)="goToSection('Gestión de Usuarios')">
+            Ir a Gestión de Usuarios
+          </button>
+        </li>
+        <li>
+          <strong>Configuración de Pagos:</strong>
+          <p>Define métodos de pago, tarifas y opciones de facturación.</p>
+          <button (click)="goToSection('Configuración de Pagos')">
+            Ir a Configuración de Pagos
+          </button>
+        </li>
+        <li>
+          <strong>Integraciones:</strong>
+          <p>
+            Conecta el sistema con otras aplicaciones o servicios (ej.
+            pasarelas de pago, software de contabilidad).
+          </p>
+          <button (click)="goToSection('Integraciones')">
+            Ir a Integraciones
+          </button>
+        </li>
+        <li>
+          <strong>Copias de Seguridad:</strong>
+          <p>Programa y gestiona las copias de seguridad de la base de datos.</p>
+          <button (click)="goToSection('Copias de Seguridad')">
+            Programar Copia de Seguridad
+          </button>
+        </li>
+      </ul>
+
+      <div style="margin-top: 20px; text-align: right;">
+        <button (click)="verRegistroActividad()">
+          Ver Registro de Actividad de Configuración
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

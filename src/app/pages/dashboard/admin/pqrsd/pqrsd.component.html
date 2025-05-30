@@ -1,0 +1,143 @@
+<div class="layout">
+  <aside>
+    <app-admin></app-admin>
+  </aside>
+  <div class="container">
+    <div class="product-form card">
+      <h2>Radicar PQRSDF</h2>
+
+      <form (ngSubmit)="enviarSolicitud()" #form="ngForm" novalidate>
+        <div>
+          <label for="pqrsd-type">Tipo de Solicitud</label>
+          <select
+            id="pqrsd-type"
+            required
+            [(ngModel)]="pqrsdfForm.tipo"
+            name="tipo"
+            #tipo="ngModel"
+          >
+            <option value="">-- Seleccione el tipo --</option>
+            <option *ngFor="let t of tipos" [value]="t.value">{{ t.label }}</option>
+          </select>
+          <div *ngIf="tipo.invalid && tipo.touched" style="color: red;">
+            El tipo es obligatorio.
+          </div>
+        </div>
+
+        <div>
+          <label for="pqrsd-subject">Asunto</label>
+          <input
+            id="pqrsd-subject"
+            type="text"
+            placeholder="Breve descripción del motivo"
+            required
+            [(ngModel)]="pqrsdfForm.asunto"
+            name="asunto"
+            #asunto="ngModel"
+          />
+          <div *ngIf="asunto.invalid && asunto.touched" style="color: red;">
+            El asunto es obligatorio.
+          </div>
+        </div>
+
+        <div>
+          <label for="pqrsd-description">Descripción Detallada</label>
+          <textarea
+            id="pqrsd-description"
+            rows="6"
+            placeholder="Explique su solicitud con el mayor detalle posible."
+            required
+            [(ngModel)]="pqrsdfForm.descripcion"
+            name="descripcion"
+            #descripcion="ngModel"
+          ></textarea>
+          <div *ngIf="descripcion.invalid && descripcion.touched" style="color: red;">
+            La descripción es obligatoria.
+          </div>
+        </div>
+
+        <div>
+          <label for="pqrsd-client-name">Nombre del Cliente (Opcional)</label>
+          <input
+            id="pqrsd-client-name"
+            type="text"
+            placeholder="Si aplica, nombre de quien radica"
+            [(ngModel)]="pqrsdfForm.cliente"
+            name="cliente"
+          />
+        </div>
+
+        <div>
+          <label for="pqrsd-contact-email">Correo Electrónico de Contacto</label>
+          <input
+            id="pqrsd-contact-email"
+            type="email"
+            placeholder="Para recibir actualizaciones"
+            required
+            [(ngModel)]="pqrsdfForm.email"
+            name="email"
+            #email="ngModel"
+          />
+          <div *ngIf="email.invalid && email.touched" style="color: red;">
+            El correo electrónico es obligatorio y debe ser válido.
+          </div>
+        </div>
+
+        <div>
+          <label for="pqrsd-contact-phone">Teléfono de Contacto (Opcional)</label>
+          <input
+            id="pqrsd-contact-phone"
+            type="tel"
+            placeholder="Número de teléfono"
+            [(ngModel)]="pqrsdfForm.telefono"
+            name="telefono"
+          />
+        </div>
+
+        <button type="submit" [disabled]="form.invalid">Enviar Solicitud</button>
+        <button type="button" (click)="limpiarFormulario()">Limpiar Formulario</button>
+      </form>
+    </div>
+
+    <div class="product-list">
+      <h2>Historial de PQRSDF</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID Solicitud</th>
+            <th>Tipo</th>
+            <th>Asunto</th>
+            <th>Fecha Radicación</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let solicitud of historial">
+            <td>{{ solicitud.id }}</td>
+            <td>{{ solicitud.tipo }}</td>
+            <td>{{ solicitud.asunto }}</td>
+            <td>{{ solicitud.fechaRadicacion }}</td>
+            <td [style.color]="
+              solicitud.estado === 'En Revisión' ? 'orange' :
+              solicitud.estado === 'Recibida' ? 'blue' :
+              solicitud.estado === 'Cerrada' ? 'green' : 'black'
+            ">
+              {{ solicitud.estado }}
+            </td>
+            <td>
+              <button (click)="verDetalles(solicitud.id)">Ver Detalles</button>
+              <button (click)="actualizarEstado(solicitud.id)" *ngIf="solicitud.estado !== 'Cerrada'">Actualizar Estado</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top: 20px; text-align: right;">
+        <button (click)="buscarSolicitudes()">Buscar Solicitudes</button>
+        <button (click)="generarReporte()">Generar Reporte de PQRSDF</button>
+      </div>
+    </div>
+  </div>
+</div>

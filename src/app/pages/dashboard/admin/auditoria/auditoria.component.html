@@ -1,0 +1,112 @@
+<div class="layout">
+  <aside>
+    <app-admin></app-admin>
+  </aside>
+  <div class="container">
+    <div class="product-form card">
+      <h2>Filtros de Auditoría</h2>
+
+      <p>Utiliza los filtros para encontrar eventos específicos en el registro de auditoría.</p>
+
+      <form #auditForm="ngForm" (ngSubmit)="aplicarFiltros(auditForm)" novalidate>
+        <div>
+          <label for="audit-user">Usuario:</label>
+          <input
+            id="audit-user"
+            name="auditUser"
+            placeholder="Nombre de usuario o ID"
+            list="user-audit-list"
+            [(ngModel)]="filter.user"
+          />
+          <datalist id="user-audit-list">
+            <option value="Admin Principal"></option>
+            <option value="Juan Pérez"></option>
+            <option value="María García"></option>
+            <option value="Sistema Automático"></option>
+          </datalist>
+        </div>
+
+        <div>
+          <label for="audit-action">Acción:</label>
+          <select id="audit-action" name="auditAction" [(ngModel)]="filter.action">
+            <option value="">-- Todas las acciones --</option>
+            <option value="create">Crear</option>
+            <option value="read">Leer</option>
+            <option value="update">Actualizar</option>
+            <option value="delete">Eliminar</option>
+            <option value="login">Inicio de Sesión</option>
+            <option value="logout">Cierre de Sesión</option>
+            <option value="config-change">Cambio de Configuración</option>
+            <option value="permission-change">Cambio de Permisos</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="audit-module">Módulo:</label>
+          <select id="audit-module" name="auditModule" [(ngModel)]="filter.module">
+            <option value="">-- Todos los módulos --</option>
+            <option value="Clientes">Clientes</option>
+            <option value="Entrenadores">Entrenadores</option>
+            <option value="Usuarios y Roles">Usuarios y Roles</option>
+            <option value="Gestión de Equipo">Gestión de Equipo</option>
+            <option value="Inventario">Inventario</option>
+            <option value="Rutinas">Rutinas</option>
+            <option value="Citas">Citas</option>
+            <option value="PQRSDF">PQRSDF</option>
+            <option value="Configuración">Configuración</option>
+            <option value="Autenticación">Autenticación</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="audit-start-date">Fecha Desde:</label>
+          <input id="audit-start-date" type="date" name="auditStartDate" [(ngModel)]="filter.startDate" />
+        </div>
+
+        <div>
+          <label for="audit-end-date">Fecha Hasta:</label>
+          <input id="audit-end-date" type="date" name="auditEndDate" [(ngModel)]="filter.endDate" />
+        </div>
+
+        <button type="submit">Aplicar Filtros</button>
+        <button type="button" (click)="limpiarFiltros(auditForm)">Limpiar Filtros</button>
+      </form>
+    </div>
+
+    <div class="product-list">
+      <h2>Registro de Auditoría del Sistema</h2>
+
+      <p>Este registro muestra todas las acciones significativas realizadas en el sistema.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID Evento</th>
+            <th>Fecha y Hora</th>
+            <th>Usuario</th>
+            <th>Acción</th>
+            <th>Módulo Afectado</th>
+            <th>Detalles del Cambio</th>
+            <th>IP Origen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let record of filteredData">
+            <td>{{ record.id }}</td>
+            <td>{{ record.date}}</td>
+            <td>{{ record.user }}</td>
+            <td>{{ record.action }}</td>
+            <td>{{ record.module }}</td>
+            <td>{{ record.details }}</td>
+            <td>{{ record.ip }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top: 20px; text-align: right;">
+        <button (click)="exportarCSV()">Exportar Registro Completo (CSV)</button>
+        <button (click)="limpiarRegistrosAntiguos()">Limpiar Registros Antiguos</button>
+      </div>
+    </div>
+  </div>
+</div>

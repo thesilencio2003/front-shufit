@@ -1,0 +1,83 @@
+<div class="layout">
+  <aside>
+    <app-admin></app-admin>
+  </aside>
+  <div class="container">
+    <div class="product-form card">
+      <h2>Términos y Condiciones de Uso</h2>
+
+      <p>Bienvenido/a a {{ gimnasioNombre }}. Al acceder y utilizar nuestros servicios, aceptas cumplir y estar sujeto/a a los siguientes términos y condiciones. Por favor, léelos cuidadosamente.</p>
+
+      <h3>1. Aceptación de los Términos</h3>
+      <p>Al registrarte, acceder o utilizar cualquier parte de este sitio web o aplicación, declaras que has leído, entendido y aceptado estos Términos y Condiciones, así como nuestra Política de Privacidad. Si no estás de acuerdo con alguna parte de los términos, no debes utilizar nuestros servicios.</p>
+
+      <h3>2. Modificaciones de los Términos</h3>
+      <p>Nos reservamos el derecho de modificar estos Términos y Condiciones en cualquier momento. Las modificaciones serán efectivas inmediatamente después de su publicación en esta página. Es tu responsabilidad revisar periódicamente estos términos para estar al tanto de cualquier cambio. El uso continuado de los servicios después de la publicación de cambios constituye la aceptación de los mismos.</p>
+
+      <h3>3. Uso de los Servicios</h3>
+      <ul>
+        <li><strong>Elegibilidad:</strong> Debes tener al menos 18 años de edad para utilizar nuestros servicios. Si eres menor de 18, debes contar con el consentimiento de tus padres o tutores.</li>
+        <li><strong>Cuenta de Usuario:</strong> Eres responsable de mantener la confidencialidad de tu información de inicio de sesión y de todas las actividades que ocurran bajo tu cuenta.</li>
+        <li><strong>Conducta del Usuario:</strong> Te comprometes a utilizar nuestros servicios de manera lícita y ética, respetando a otros usuarios y a nuestro personal. Queda prohibido cualquier comportamiento que sea ilegal, dañino, amenazante, difamatorio, obsceno o que viole los derechos de propiedad intelectual.</li>
+        <li><strong>Contenido del Usuario:</strong> Cualquier contenido que publiques o envíes a nuestra plataforma es de tu responsabilidad. Nos reservamos el derecho de eliminar cualquier contenido que consideremos inapropiado o que viole estos términos.</li>
+      </ul>
+
+      <h3>4. Membresías y Pagos</h3>
+      <ul>
+        <li><strong>Precios:</strong> Todos los precios de membresías y servicios están sujetos a cambios sin previo aviso.</li>
+        <li><strong>Pagos:</strong> Los pagos deben realizarse según los plazos y métodos acordados. El impago de las cuotas puede resultar en la suspensión o cancelación de tu membresía.</li>
+        <li><strong>Cancelaciones y Reembolsos:</strong> Las políticas de cancelación y reembolso se detallarán en tu contrato de membresía específico.</li>
+      </ul>
+
+      <h3>5. Propiedad Intelectual</h3>
+      <p>Todo el contenido presente en esta plataforma, incluyendo textos, gráficos, logotipos, imágenes, videos y software, es propiedad de {{ gimnasioNombre }} o sus licenciantes y está protegido por las leyes de propiedad intelectual.</p>
+
+      <h3>6. Limitación de Responsabilidad</h3>
+      <p>En la máxima medida permitida por la ley, {{ gimnasioNombre }} no será responsable de ningún daño directo, indirecto, incidental, especial o consecuente que resulte del uso o la imposibilidad de usar nuestros servicios.</p>
+
+      <h3>7. Indemnización</h3>
+      <p>Te comprometes a indemnizar y eximir de responsabilidad a {{ gimnasioNombre }}, sus directores, empleados y agentes, de cualquier reclamo, demanda o daño, incluyendo honorarios razonables de abogados, que surjan de tu uso de los servicios o tu incumplimiento de estos términos.</p>
+
+      <h3>8. Ley Aplicable y Jurisdicción</h3>
+      <p>Estos Términos y Condiciones se rigen e interpretan de acuerdo con las leyes de {{ pais }}, sin tener en cuenta sus disposiciones sobre conflictos de leyes. Cualquier disputa que surja en relación con estos términos estará sujeta a la jurisdicción exclusiva de los tribunales de {{ ciudad }}.</p>
+
+      <h3>9. Contacto</h3>
+      <p>Si tienes alguna pregunta o inquietud sobre estos Términos y Condiciones, por favor contáctanos a través de {{ correoContacto }} o {{ telefonoContacto }}.</p>
+
+      <p><em>Última actualización: 23 de Mayo de 2025</em></p>
+
+      <button type="button" (click)="aceptar()">Aceptar y Continuar</button>
+      <button type="button" (click)="cancelar()">Cancelar</button>
+    </div>
+
+    <div class="product-list">
+      <h2>Historial de Versiones</h2>
+
+      <p>Aquí puedes ver las versiones anteriores de nuestros Términos y Condiciones.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Versión</th>
+            <th>Fecha de Publicación</th>
+            <th>Cambios Principales</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let version of versiones">
+            <td>{{ version.version }}</td>
+            <td>{{ version.date }}</td>
+            <td>{{ version.changes }}</td>
+            <td>
+              <button (click)="verVersion(version)">Ver Versión</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top: 20px; text-align: right;">
+        <button (click)="exportarVersionActual()">Exportar Versión Actual</button>
+      </div>
+    </div>
+  </div>
+</div>

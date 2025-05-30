@@ -1,36 +1,35 @@
- <div style="display: flex;">
- <aside >
+<div class="layout">
+  <aside>
     <app-admin></app-admin>
   </aside>
- <div class="container">
-    
 
-    <div class="product-form">
-      <h2>Agregar Producto</h2>
+  <div class="container">
+    <div class="product-form card">
+      <h2>{{ editando ? 'Editar Producto' : 'Agregar Producto' }}</h2>
 
-      <form>
+      <form (ngSubmit)="guardarProducto()">
         <div>
           <label for="name">Nombre</label>
-          <input id="name" placeholder="Nombre del producto" />
+          <input id="name" [(ngModel)]="nuevo.nombre" name="nombre" required placeholder="Nombre del producto" />
         </div>
 
         <div>
           <label for="description">Descripción</label>
-          <input id="description" placeholder="Descripción del producto" />
+          <input id="description" [(ngModel)]="nuevo.descripcion" name="descripcion" required placeholder="Descripción del producto" />
         </div>
 
         <div>
           <label for="price">Precio</label>
-          <input id="price" type="number" placeholder="Precio del producto" />
+          <input id="price" type="number" [(ngModel)]="nuevo.precio" name="precio" required placeholder="Precio del producto" />
         </div>
 
         <div>
-          <label for="image">Imagen</label>
-          <input id="image" placeholder="Imagen del producto" />
+          <label for="image">URL de Imagen</label>
+          <input id="image" [(ngModel)]="nuevo.imagen" name="imagen" placeholder="Ruta o URL de imagen" />
         </div>
 
-        <button type="submit">Agregar Producto</button>
-        <button type="button">Cancelar</button>
+        <button type="submit">{{ editando ? 'Guardar Cambios' : 'Agregar Producto' }}</button>
+        <button type="button" (click)="cancelar()">Cancelar</button>
       </form>
     </div>
 
@@ -48,17 +47,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Producto 1</td>
-            <td>Descripción del producto 1</td>
-            <td>$10.00</td>
-            <td><img src="ruta/imagen.jpg" alt="Imagen del producto" /></td>
+          <tr *ngFor="let producto of productos; let i = index">
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.descripcion }}</td>
+            <td>${{ producto.precio.toFixed(2) }}</td>
             <td>
-              <button>Editar</button>
-              <button>Eliminar</button>
+              <img *ngIf="producto.imagen" [src]="producto.imagen" alt="Imagen del producto" width="60" />
+            </td>
+            <td>
+              <button (click)="editarProducto(i)">Editar</button>
+              <button (click)="eliminarProducto(i)">Eliminar</button>
             </td>
           </tr>
-          <!-- Más filas de ejemplo aquí -->
         </tbody>
       </table>
     </div>

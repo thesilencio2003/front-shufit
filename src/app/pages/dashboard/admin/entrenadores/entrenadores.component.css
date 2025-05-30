@@ -14,8 +14,6 @@ html, body {
   overflow: hidden; /* Evita barras de desplazamiento no deseadas en el layout principal */
 }
 
-
-
 /* Contenedor principal de contenido (formulario y lista) */
 .layout .container {
   flex-grow: 1; /* Ocupa todo el espacio restante horizontalmente */
@@ -171,7 +169,7 @@ html, body {
 .product-list th:last-child { border-top-right-radius: 10px; }
 
 .product-list tbody tr:last-child td {
-    border-bottom: none; /* Elimina el borde inferior de la última fila */
+  border-bottom: none; /* Elimina el borde inferior de la última fila */
 }
 
 .product-list tr:hover {
